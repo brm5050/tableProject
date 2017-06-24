@@ -35,7 +35,7 @@ var waitingList = [{
 
 // Routes and logs server is listening
 
-app.get("/", function(req, res) {
+app.get("/index", function(req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
@@ -65,6 +65,7 @@ app.get("/api/waiting-list", function(req, res) {
 
 //GET api/waiting list
 
+/*
 app.post("/api/new", function(req, res) {
   var newTable = req.body;
   newTable.routeName = newTable.name.replace(/\s+/g, "").toLowerCase();
@@ -78,6 +79,19 @@ app.post("/api/new", function(req, res) {
   if (newTable){
 
   }
+});
+*/
+
+// Creating a brand new reservation
+app.post("/api/tables", function(req, res) {
+  
+  if(reservations[i] < 5) {
+
+
+  } else {
+
+  }
+  
 });
 
 //POST api/new
