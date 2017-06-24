@@ -81,27 +81,35 @@ app.post("/api/new", function(req, res) {
 
   }
 });
-*/
-function reservationCreation(name, phone, email, uniqueId) {
+
+function Reservation(name, phone, email, uniqueId) {
   this.name = name;
   this.phone = phone;
   this.email = email;
   this.uniqueId = uniqueId;
 }
+
+*/
+
 //POST api/new
 app.post("/api/tables", function(req, res) {
   
-  if(reservations[i] < 5) {
+  var collection,
+      reservation = req.body;
 
-    var newReservation = new reservationCreation(req.body.name, req.body.phone, req.body.email, req.body.uniqueId);
-
-    console.log(newReservation);
-    newReservation.push(reservations);
-    res.json(newReservation);
+  if(reservations.length < 5) {
+    collection = "reservations";
+    reservations.push(reservation);
 
   } else {
-
+    collection = "waiting-list";
+    waitingList.push(reservation);
   }
+
+  res.json({
+    collection: collection,
+    reservation: reservation
+  });
   
 });
 
