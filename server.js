@@ -35,7 +35,7 @@ var waitingList = [{
 
 // Routes and logs server is listening
 
-app.get("/", function(req, res) {
+app.get("/index", function(req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
@@ -75,14 +75,12 @@ app.post("/api/new", function(req, res) {
 
   res.json(newTable);
 
-  if (newTable){
+  if (reservations.length){
 
   }
 });
 
-//POST api/new
 
-//GET /api/clear
 
 //2 arrays waiting list reservations
 
