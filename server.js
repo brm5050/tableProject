@@ -84,11 +84,18 @@ app.post("/api/new", function(req, res) {
 
 // Creating a brand new reservation
 app.post("/api/tables", function(req, res) {
-  
-  if(reservations[i] < 5) {
+  console.log("reservation recieved");
+  console.log(req.body);
+  if(reservations.length < 5) {
+
+    reservations.push(req.body);
+    res.send(true);
 
 
   } else {
+
+    waitingList.push(req.body);
+    res.send(false);
 
   }
   

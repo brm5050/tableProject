@@ -32,19 +32,19 @@
 					<form>
 						<div class="form-group">
 							<label for="name">Name</label>
-							<input type="text" class="form-control" id="name">
+							<input type="text" class="form-control" id="name" required="required">
 						</div>
 						<div class="form-group">
 							<label for="phone">Phone Number</label>
-							<input type="text" class="form-control" id="phone">
+							<input type="text" class="form-control" id="phone" required="required">
 						</div>
 						<div class="form-group">
 							<label for="email">Email</label>
-							<input type="email" class="form-control" id="email">
+							<input type="email" class="form-control" id="email" required="required">
 						</div>
 						<div class="form-group">
 							<label for="unique">Unique ID</label>
-							<input type="text" class="form-control" id="unique">
+							<input type="text" class="form-control" id="unique" required="required">
 						</div>
 						<button type="submit" class="btn btn-primary" id="submit">Submit</button>
 					</form>
@@ -73,11 +73,8 @@
 			console.log(currentURL);
 
 			$.post(currentURL + "/api/tables", newReservation, function(data) {
-				if (data === true) {
-					alert("Table reservation complete.");
-				} else {
-					alert("Tables full. You have been put on the wait list.")
-				}
+				
+				alert(data.reservation.name+" has been placed on the "+data.collection+" list.")
 
 				$("#name").val("");
 				$("#phone").val("");
