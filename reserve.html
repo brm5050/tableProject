@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Reservation Page</title>
+
+	<!-- Latest compiled and minified CSS & JS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+	<div class="container">
+		<header>
+			<div class="jumbotron text-center">
+				<h1><span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Hot Restaurant</h1>
+				<hr>
+				<p>Make Your Reservation</p>
+				<p>
+					<a class="btn btn-primary btn-lg" href="/tables" role="button"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Tables</a>
+					<a class="btn btn-warning btn-lg" href="/index" role="button"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+				</p>
+			</div>
+		</header>
+		<main>
+
+			<div class="panel panel-default">
+				<div class="panel-heading"><h4 class="panel-title">Table Reservation</h4></div>
+				<div class="panel-body">
+					<form>
+						<div class="form-group">
+							<label for="name">Name</label>
+							<input type="text" class="form-control" id="name">
+						</div>
+						<div class="form-group">
+							<label for="phone">Phone Number</label>
+							<input type="text" class="form-control" id="phone">
+						</div>
+						<div class="form-group">
+							<label for="email">Email</label>
+							<input type="email" class="form-control" id="email">
+						</div>
+						<div class="form-group">
+							<label for="unique">Unique ID</label>
+							<input type="text" class="form-control" id="unique">
+						</div>
+						<button type="submit" class="btn btn-primary" id="submit">Submit</button>
+					</form>
+				</div>
+			</div>
+		</main>
+		<footer class="footer">
+			<p><a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a> </p>
+		</footer>
+	</div>
+
+	<script type="text/javascript">
+		$("#submit").on("click", function() {
+			event.preventDefault()
+
+			var newReservation = {
+				name: $("#name").val().trim(),
+				phone: $("#phone").val().trim(),
+				email: $("#email").val().trim(),
+				uniqueID: $("#unique").val().trim()
+			};
+
+			var currentURL = window.location.origin;
+
+			console.log(newReservation);
+			console.log(currentURL);
+
+			$.post(currentURL + "/api/tables", newReservation, function(data) {
+				if (data === true) {
+					alert("Table reservation complete.");
+				} else {
+					alert("Tables full. You have been put on the wait list.")
+				}
+
+				$("#name").val("");
+				$("#phone").val("");
+				$("#email").val("");
+				$("#unique").val("");
+			});
+		});
+	</script>
+</body>
+</html>
