@@ -21,17 +21,18 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 var reservations = [{
 	name: "Origin Master",
-	phoneNumer: "732-234-5678",
+	phone: "732-234-5678",
 	email: "origin@aol.com",
 	uniqueId: "73111"
-}];
+},{
+  name: "Davey D",
+  phone: "732-342-9876",
+  email: "davey@aol.com",
+  uniqueId: "72211"
+}
+];
 
-var waitingList = [{
-	name: "Davey D",
-	phoneNumer: "732-342-9876",
-	email: "davey@aol.com",
-	uniqueId: "72211"
-}];
+var waitingList = [];
 
 // Routes and logs server is listening
 
@@ -81,12 +82,22 @@ app.post("/api/new", function(req, res) {
   }
 });
 */
-
-// Creating a brand new reservation
+function reservationCreation(name, phone, email, uniqueId) {
+  this.name = name;
+  this.phone = phone;
+  this.email = email;
+  this.uniqueId = uniqueId;
+}
+//POST api/new
 app.post("/api/tables", function(req, res) {
   
   if(reservations[i] < 5) {
 
+    var newReservation = new reservationCreation(req.body.name, req.body.phone, req.body.email, req.body.uniqueId);
+
+    console.log(newReservation);
+    newReservation.push(reservations);
+    res.json(newReservation);
 
   } else {
 
