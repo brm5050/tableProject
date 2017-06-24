@@ -21,17 +21,18 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 var reservations = [{
 	name: "Origin Master",
-	phoneNumer: "732-234-5678",
+	phone: "732-234-5678",
 	email: "origin@aol.com",
 	uniqueId: "73111"
-}];
+},{
+  name: "Davey D",
+  phone: "732-342-9876",
+  email: "davey@aol.com",
+  uniqueId: "72211"
+}
+];
 
-var waitingList = [{
-	name: "Davey D",
-	phoneNumer: "732-342-9876",
-	email: "davey@aol.com",
-	uniqueId: "72211"
-}];
+var waitingList = [];
 
 // Routes and logs server is listening
 
@@ -59,51 +60,45 @@ app.get("/api/tables", function(req, res) {
 
 
 
-app.get("/api/waiting-list", function(req, res) {
+app.get("/api/waitlist", function(req, res) {
   res.json(waitingList);
 });
 
 //GET api/waiting list
 
-/*
-app.post("/api/new", function(req, res) {
-  var newTable = req.body;
-  newTable.routeName = newTable.name.replace(/\s+/g, "").toLowerCase();
 
-  console.log(newTable);
 
-  tables.push(newTable);
-
-  res.json(newTable);
-
-  if (reservations.length){
-
-  }
-});
-*/
-
-// Creating a brand new reservation
+//POST api/new
 app.post("/api/tables", function(req, res) {
-  console.log("reservation recieved");
-  console.log(req.body);
+  
+  var collection,
+      reservation = req.body;
+
   if(reservations.length < 5) {
-
-    reservations.push(req.body);
-    res.send(true);
-
+    collection = "reservations";
+    reservations.push(reservation);
 
   } else {
-
-    waitingList.push(req.body);
-    res.send(false);
-
+    collection = "waiting-list";
+    waitingList.push(reservation);
   }
-  
+
+
+
+  else
+  	res.json(reservations);
+});
+
+app.post("/api/new", function(req, res) {
+  var newReserve = req.body;
+  newReserve.routeName = newReserve.name.replace(/\s+/g, "").toLowerCase();
+
+
 });
 
 
 
-//2 arrays waiting list reservations
+
 
 //Starts server listening
 app.listen(PORT, function() {
