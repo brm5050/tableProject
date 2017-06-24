@@ -76,7 +76,7 @@ app.post("/api/new", function(req, res) {
 
   res.json(newTable);
 
-  if (newTable){
+  if (reservations.length){
 
   }
 });
@@ -94,9 +94,7 @@ app.post("/api/tables", function(req, res) {
   
 });
 
-//POST api/new
 
-//GET /api/clear
 
 //2 arrays waiting list reservations
 
