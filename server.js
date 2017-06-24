@@ -60,36 +60,13 @@ app.get("/api/tables", function(req, res) {
 
 
 
-app.get("/api/waiting-list", function(req, res) {
+app.get("/api/waitlist", function(req, res) {
   res.json(waitingList);
 });
 
 //GET api/waiting list
 
-/*
-app.post("/api/new", function(req, res) {
-  var newTable = req.body;
-  newTable.routeName = newTable.name.replace(/\s+/g, "").toLowerCase();
 
-  console.log(newTable);
-
-  tables.push(newTable);
-
-  res.json(newTable);
-
-  if (reservations.length){
-
-  }
-});
-
-function Reservation(name, phone, email, uniqueId) {
-  this.name = name;
-  this.phone = phone;
-  this.email = email;
-  this.uniqueId = uniqueId;
-}
-
-*/
 
 //POST api/new
 app.post("/api/tables", function(req, res) {
@@ -111,11 +88,25 @@ app.post("/api/tables", function(req, res) {
     reservation: reservation
   });
   
+
+  else
+  	res.json(reservations);
+});
+
+app.post("/api/new", function(req, res) {
+  var newReserve = req.body;
+  newReserve.routeName = newReserve.name.replace(/\s+/g, "").toLowerCase();
+
+  console.log(newReserve)
+
+  reservations.push(newReserve);
+
+  res.json(newReserve);
 });
 
 
 
-//2 arrays waiting list reservations
+
 
 //Starts server listening
 app.listen(PORT, function() {
