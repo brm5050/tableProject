@@ -21,17 +21,18 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 var reservations = [{
 	name: "Origin Master",
-	phoneNumer: "732-234-5678",
+	phone: "732-234-5678",
 	email: "origin@aol.com",
 	uniqueId: "73111"
-}];
+},{
+  name: "Davey D",
+  phone: "732-342-9876",
+  email: "davey@aol.com",
+  uniqueId: "72211"
+}
+];
 
-var waitingList = [{
-	name: "Davey D",
-	phoneNumer: "732-342-9876",
-	email: "davey@aol.com",
-	uniqueId: "72211"
-}];
+var waitingList = [];
 
 // Routes and logs server is listening
 
@@ -65,19 +66,32 @@ app.get("/api/waitlist", function(req, res) {
 
 //GET api/waiting list
 
-/*app.post("/api/new", function(req, res) {
-  var newTable = req.body;
-  newTable.Name = newTable.name.replace(/\s+/g, "").toLowerCase();
 
- 
-//if else statement putting json info into variables
-  if (newTable.length > 5){
-  	res.json(waitingList);
+
+//POST api/new
+app.post("/api/tables", function(req, res) {
+  
+  var collection,
+      reservation = req.body;
+
+  if(reservations.length < 5) {
+    collection = "reservations";
+    reservations.push(reservation);
+
+  } else {
+    collection = "waiting-list";
+    waitingList.push(reservation);
   }
+
+  res.json({
+    collection: collection,
+    reservation: reservation
+  });
+  
 
   else
   	res.json(reservations);
-});*/
+});
 
 app.post("/api/new", function(req, res) {
   var newReserve = req.body;
