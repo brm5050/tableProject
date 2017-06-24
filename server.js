@@ -83,11 +83,7 @@ app.post("/api/tables", function(req, res) {
     waitingList.push(reservation);
   }
 
-  res.json({
-    collection: collection,
-    reservation: reservation
-  });
-  
+
 
   else
   	res.json(reservations);
@@ -97,11 +93,7 @@ app.post("/api/new", function(req, res) {
   var newReserve = req.body;
   newReserve.routeName = newReserve.name.replace(/\s+/g, "").toLowerCase();
 
-  console.log(newReserve)
 
-  reservations.push(newReserve);
-
-  res.json(newReserve);
 });
 
 
