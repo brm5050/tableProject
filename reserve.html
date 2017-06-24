@@ -72,7 +72,7 @@
 			console.log(newReservation);
 			console.log(currentURL);
 
-			$.POST(currentURL + "/api/tables", newReservation, function(data) {
+			$.post(currentURL + "/api/tables", newReservation, function(data) {
 				if (data === true) {
 					alert("Table reservation complete.");
 				} else {
