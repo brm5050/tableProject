@@ -65,38 +65,34 @@ app.get("/api/waiting-list", function(req, res) {
 
 //GET api/waiting list
 
-/*
-app.post("/api/new", function(req, res) {
+/*app.post("/api/new", function(req, res) {
   var newTable = req.body;
-  newTable.routeName = newTable.name.replace(/\s+/g, "").toLowerCase();
+  newTable.Name = newTable.name.replace(/\s+/g, "").toLowerCase();
 
-  console.log(newTable);
-
-  tables.push(newTable);
-
-  res.json(newTable);
-
-  if (reservations.length){
-
+ 
+//if else statement putting json info into variables
+  if (newTable.length > 5){
+  	res.json(waitingList);
   }
-});
-*/
 
-// Creating a brand new reservation
-app.post("/api/tables", function(req, res) {
-  
-  if(reservations[i] < 5) {
+  else
+  	res.json(reservations);
+});*/
 
+app.post("/api/new", function(req, res) {
+  var newReserve = req.body;
+  newReserve.routeName = newReserve.name.replace(/\s+/g, "").toLowerCase();
 
-  } else {
+  console.log(newReserve)
 
-  }
-  
+  reservations.push(newReserve);
+
+  res.json(newReserve);
 });
 
 
 
-//2 arrays waiting list reservations
+
 
 //Starts server listening
 app.listen(PORT, function() {
