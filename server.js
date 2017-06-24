@@ -59,7 +59,7 @@ app.get("/api/tables", function(req, res) {
 
 
 
-app.get("/api/waiting-list", function(req, res) {
+app.get("/api/waitlist", function(req, res) {
   res.json(waitingList);
 });
 
