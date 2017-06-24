@@ -83,10 +83,10 @@ app.post("/api/tables", function(req, res) {
     waitingList.push(reservation);
   }
 
-
-
-  else
-  	res.json(reservations);
+res.json({
+    collection: collection,
+    reservation: reservation
+  });
 });
 
 app.post("/api/new", function(req, res) {
