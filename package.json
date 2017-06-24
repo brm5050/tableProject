@@ -1,7 +1,7 @@
 {
-  "name": "hottable",
+  "name": "HOT TABLE",
   "version": "1.0.0",
-  "main": "hotTable.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,5 +11,9 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3"
+  },
+
+  "scripts": {
+    "start": "node server.js"
   }
 }
